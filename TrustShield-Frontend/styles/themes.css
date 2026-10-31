@@ -1,0 +1,78 @@
+/* =============================================================
+   TrustShield AI — Theme Manager CSS
+   System-level theme transitions and media query support.
+   ============================================================= */
+
+/* ─── SMOOTH THEME TRANSITION ────────────────────────────────── */
+body,
+.card, .stat-card, .scan-row,
+.input, .textarea, .select,
+.btn, .badge, .alert, .toast,
+.tabs, .tab-btn,
+.sidebar, .topbar,
+.modal {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── SYSTEM DEFAULT THEME ───────────────────────────────────── */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]):not([data-theme="light"]) {
+    --bg-primary:    #F0F4F9;
+    --bg-secondary:  #FFFFFF;
+    --bg-card:       #FFFFFF;
+    --bg-input:      #F0F4F9;
+    --bg-hover:      #E8EEF6;
+    --bg-overlay:    rgba(240, 244, 249, 0.90);
+
+    --accent:        #0099BB;
+    --accent-dim:    #007A99;
+    --accent-glow:   rgba(0, 153, 187, 0.10);
+    --accent-border: rgba(0, 153, 187, 0.25);
+
+    --success:       #00A86B;
+    --success-bg:    rgba(0, 168, 107, 0.10);
+    --warning:       #D4850A;
+    --warning-bg:    rgba(212, 133, 10, 0.10);
+    --danger:        #D63048;
+    --danger-bg:     rgba(214, 48, 72, 0.10);
+    --info:          #0099BB;
+    --info-bg:       rgba(0, 153, 187, 0.10);
+
+    --severity-critical: #D63048;
+    --severity-high:     #C4521A;
+    --severity-moderate: #D4850A;
+    --severity-low:      #00A86B;
+
+    --text-primary:   #0D1929;
+    --text-secondary: #4B5E7A;
+    --text-muted:     #8096B4;
+    --text-accent:    #0099BB;
+    --text-inverse:   #FFFFFF;
+
+    --border:         #DDE4EF;
+    --border-light:   #C8D3E4;
+    --border-accent:  rgba(0, 153, 187, 0.30);
+
+    --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.10);
+    --shadow-lg:   0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* ─── PRINT STYLES ───────────────────────────────────────────── */
+@media print {
+  body { background: white; color: black; }
+  .sidebar, .topbar, .btn, .toast-container { display: none !important; }
+  .card { border: 1px solid #ccc; box-shadow: none; }
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

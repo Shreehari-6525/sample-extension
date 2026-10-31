@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrustShield AI — Dashboard</title>
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/themes.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="auth-checking">
+
+<div class="app-layout" id="appLayout">
+
+  <!-- ════════════════════════════════════════════════════════
+       SIDEBAR
+  ════════════════════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+
+    <!-- Brand -->
+    <div class="sidebar-brand">
+      <div class="sidebar-logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M14 3L4 7.5v6c0 5.5 4.17 10.65 10 11.95C19.83 24.15 24 19.05 24 13.5v-6L14 3z"
+                fill="rgba(0,229,255,0.12)" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M10 13.5l3 3 5-5.5" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">TrustShield</span>
+        <span class="sidebar-brand-sub">AI Security</span>
+      </div>
+      <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse sidebar" aria-label="Collapse sidebar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav" aria-label="Dashboard navigation">
+      <div class="sidebar-nav-section">
+        <span class="sidebar-nav-label">Main</span>
+        <a class="sidebar-nav-item" data-page="overview" href="#overview" aria-label="Overview">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Overview</span>
+        </a>
+        <a class="sidebar-nav-item" data-page="universal-scan" href="#universal-scan" aria-label="Universal Scan">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Universal Scan</span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-section">
+        <span class="sidebar-nav-label">Scanners</span>
+        <a class="sidebar-nav-item" data-page="url-scanner" href="#url-scanner" aria-label="URL Scanner">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </span>
+          <span class="sidebar-nav-text">URL Scanner</span>
+        </a>
+        <a class="sidebar-nav-item" data-page="email-sms" href="#email-sms" aria-label="Email / SMS Scanner">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Email / SMS</span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-section">
+        <span class="sidebar-nav-label">Intelligence</span>
+        <a class="sidebar-nav-item" data-page="history" href="#history" aria-label="Scan History">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Scan History</span>
+        </a>
+        <a class="sidebar-nav-item" data-page="analytics" href="#analytics" aria-label="Analytics">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Analytics</span>
+        </a>
+        <a class="sidebar-nav-item" data-page="protection" href="#protection" aria-label="Browser Protection">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7l-9-5z"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Browser Protection</span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-section">
+        <span class="sidebar-nav-label">Account</span>
+        <a class="sidebar-nav-item" data-page="settings" href="#settings" aria-label="Settings">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Settings</span>
+        </a>
+        <a class="sidebar-nav-item" data-page="profile" href="#profile" aria-label="Profile">
+          <span class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span class="sidebar-nav-text">Profile</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Sidebar Bottom -->
+    <div class="sidebar-bottom">
+      <div class="sidebar-protection-status" id="sidebarProtectionStatus">
+        <div class="protection-pill active" id="sidebarProtPill">
+          <span class="dot dot-success dot-pulse"></span>
+          <span class="sidebar-nav-text">Protected</span>
+        </div>
+      </div>
+    </div>
+
+  </aside><!-- /sidebar -->
+
+  <!-- ════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════════════════════ -->
+  <div class="main-content" id="mainContent">
+
+    <!-- Topbar -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-mobile-toggle btn-icon btn" id="sidebarMobileToggle" aria-label="Toggle sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="topbar-page-title" id="topbarPageTitle">Overview</h1>
+      </div>
+
+      <div class="topbar-right">
+        <div class="demo-notice">⚗ Demo Mode</div>
+
+        <!-- Theme Switcher -->
+        <div class="theme-switcher" role="group" aria-label="Theme">
+          <button class="theme-btn" data-theme-btn="dark"  title="Dark theme"   aria-label="Dark theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <button class="theme-btn" data-theme-btn="light" title="Light theme"  aria-label="Light theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+          <button class="theme-btn" data-theme-btn="system" title="System theme" aria-label="System theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </button>
+        </div>
+
+        <!-- User Avatar -->
+        <button class="topbar-user" id="topbarUser" aria-label="Profile" aria-haspopup="true">
+          <div class="avatar avatar-md">AJ</div>
+          <div class="topbar-user-info">
+            <span class="topbar-user-name">Alex Johnson</span>
+            <span class="topbar-user-role">Citizen User</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+    </header><!-- /topbar -->
+
+    <!-- Page Content -->
+    <div id="pageContent" class="page-content">
+      <div class="page-loading">
+        <div class="scan-animation"><div class="scan-animation-inner"></div></div>
+        <p class="text-secondary">Loading…</p>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+
+</div><!-- /app-layout -->
+
+<!-- Modals -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal" id="modal">
+    <h3 class="modal-title" id="modalTitle">Confirm</h3>
+    <p class="modal-body" id="modalBody"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="modalCancel">Cancel</button>
+      <button class="btn btn-danger" id="modalConfirm">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Scripts -->
+<script src="../scripts/storage.js"></script>
+<script src="../scripts/mock-data.js"></script>
+<script src="../scripts/utils.js"></script>
+<script src="../scripts/theme-manager.js"></script>
+<script src="../scripts/api-service.js"></script>
+<script src="../scripts/auth-guard.js"></script>
+<script src="../pages/overview/overview.js"></script>
+<script src="../pages/universal-scan/universal-scan.js"></script>
+<script src="../pages/url-scanner/url-scanner.js"></script>
+<script src="../pages/email-sms-scanner/email-sms-scanner.js"></script>
+<script src="../pages/threat-report/threat-report.js"></script>
+<script src="../pages/scan-history/scan-history.js"></script>
+<script src="../pages/analytics/analytics.js"></script>
+<script src="../pages/browser-protection/browser-protection.js"></script>
+<script src="../pages/settings/settings.js"></script>
+<script src="../pages/profile/profile.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
+

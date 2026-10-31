@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrustShield AI</title>
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/themes.css" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body class="auth-checking">
+
+<!-- ═══════════════════════════════════════════════════════════
+     POPUP SHELL — 380px × 560px
+═══════════════════════════════════════════════════════════ -->
+<div class="popup-shell">
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="popup-header">
+    <div class="popup-brand">
+      <div class="popup-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6l-9-4z" fill="var(--accent)" opacity="0.18"/>
+          <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6l-9-4z" stroke="var(--accent)" stroke-width="1.5" fill="none"/>
+          <path d="M9 12l2 2 4-4" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="popup-brand-text">
+        <span class="popup-brand-name">TrustShield AI</span>
+        <span class="popup-brand-tagline">Threat Detection</span>
+      </div>
+    </div>
+    <div class="popup-header-actions">
+      <button class="btn btn-icon popup-theme-toggle" id="popupThemeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+      <button class="popup-avatar" id="popupAvatar" title="Open profile" aria-label="Profile">
+        <div class="avatar avatar-sm" id="popupAvatarText">AJ</div>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Protection Status ──────────────────────────────────── -->
+  <div class="popup-status-bar">
+    <div class="protection-pill active" id="popupProtectionPill">
+      <span class="dot dot-success dot-pulse"></span>
+      <span>Protection Active</span>
+    </div>
+    <span class="popup-status-meta" id="popupStatusMeta">3 threats blocked today</span>
+  </div>
+
+  <!-- ── Scanner Tabs ───────────────────────────────────────── -->
+  <div class="popup-scanner-section">
+    <div class="tabs" role="tablist" aria-label="Scanner type">
+      <button class="tab-btn active" data-tab="url" role="tab" aria-selected="true">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        URL Scanner
+      </button>
+      <button class="tab-btn" data-tab="email" role="tab" aria-selected="false">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email / SMS
+      </button>
+    </div>
+
+    <!-- URL Scanner Panel -->
+    <div class="tab-panel" id="panel-url" role="tabpanel">
+      <div class="popup-input-group">
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="url" class="input popup-input" id="urlInput"
+            placeholder="Paste or type a URL..." aria-label="URL to scan" autocomplete="off" spellcheck="false"/>
+          <button class="input-icon-right" id="urlClear" title="Clear" aria-label="Clear input" style="display:none">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="popup-input-error hidden" id="urlError" role="alert">⚠ Please enter a valid URL</div>
+      </div>
+      <div class="popup-actions">
+        <button class="btn btn-ghost btn-sm popup-tab-btn" id="btnScanCurrentTab">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Scan Current Tab
+        </button>
+        <button class="btn btn-primary btn-sm" id="btnAnalyzeUrl">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5,3 19,12 5,21"/></svg>
+          Analyze
+        </button>
+      </div>
+    </div>
+
+    <!-- Email/SMS Scanner Panel -->
+    <div class="tab-panel hidden" id="panel-email" role="tabpanel">
+      <div class="popup-input-group">
+        <textarea class="textarea popup-textarea" id="emailInput"
+          placeholder="Paste email or SMS message text to analyze for phishing..."
+          aria-label="Message text to scan" rows="4"></textarea>
+        <div class="popup-input-error hidden" id="emailError" role="alert">⚠ Please enter a message to analyze</div>
+      </div>
+      <div class="popup-actions">
+        <button class="btn btn-ghost btn-sm" id="btnClearEmail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Clear
+        </button>
+        <button class="btn btn-primary btn-sm" id="btnAnalyzeEmail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5,3 19,12 5,21"/></svg>
+          Analyze
+        </button>
+      </div>
+    </div>
+
+    <!-- Scanning State -->
+    <div class="popup-scanning hidden" id="scanningState" aria-live="polite">
+      <div class="scan-animation"><div class="scan-animation-inner"></div></div>
+      <span class="popup-scanning-text" id="scanningText">Analyzing threat indicators…</span>
+    </div>
+
+    <!-- Quick Result Preview -->
+    <div class="popup-result hidden" id="quickResult">
+      <div class="popup-result-inner" id="quickResultContent"></div>
+      <button class="btn btn-ghost btn-sm btn-full popup-view-full" id="btnViewFullReport">
+        View Full Report →
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Recent Scans ───────────────────────────────────────── -->
+  <div class="popup-recent">
+    <div class="popup-recent-header">
+      <span class="popup-recent-title">Recent Scans</span>
+      <button class="popup-link" id="btnViewHistory">See all</button>
+    </div>
+    <div class="popup-recent-list" id="recentScansList">
+      <!-- Populated by popup.js -->
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="popup-footer">
+    <button class="btn btn-secondary btn-sm popup-dashboard-btn" id="btnOpenDashboard">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Open Dashboard
+    </button>
+    <button class="btn btn-icon popup-signout-btn" id="btnPopupSignOut" title="Sign out" aria-label="Sign out">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    </button>
+    <button class="btn btn-icon" id="btnSettings" title="Settings" aria-label="Settings">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </footer>
+
+</div><!-- /popup-shell -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     AUTH GATE — shown instead of the scanner when signed out
+═══════════════════════════════════════════════════════════ -->
+<div class="popup-gate hidden" id="authGate">
+  <div class="popup-gate-brand">
+    <div class="popup-gate-logo">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6l-9-4z" fill="var(--accent)" opacity="0.18"/>
+        <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6l-9-4z" stroke="var(--accent)" stroke-width="1.5" fill="none"/>
+        <path d="M9 12l2 2 4-4" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1 class="popup-gate-title">Welcome to TrustShield AI</h1>
+    <p class="popup-gate-sub">Sign in or create an account to scan URLs, emails and SMS for threats.</p>
+  </div>
+
+  <div class="popup-gate-actions">
+    <button class="btn btn-primary btn-full btn-lg" id="gateSignIn">Sign In</button>
+    <button class="btn btn-ghost btn-full btn-lg" id="gateRegister">Create Account</button>
+    <div class="divider-text"><span>or</span></div>
+    <button class="btn-google" id="gateGoogle">
+      <svg width="18" height="18" viewBox="0 0 24 24">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continue with Google
+    </button>
+  </div>
+
+  <p class="popup-gate-legal">
+    By continuing you agree to the <a href="#" id="gateTerms">Terms</a> and <a href="#" id="gatePrivacy">Privacy Policy</a>.
+    <br />Prototype build &mdash; sign-in is simulated.
+  </p>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../scripts/storage.js"></script>
+<script src="../scripts/mock-data.js"></script>
+<script src="../scripts/utils.js"></script>
+<script src="../scripts/theme-manager.js"></script>
+<script src="../scripts/api-service.js"></script>
+<script src="../scripts/auth-guard.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>
+

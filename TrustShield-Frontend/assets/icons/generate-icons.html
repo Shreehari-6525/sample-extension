@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TrustShield AI — Icon Generator</title>
+<script>
+/**
+ * Icon Generator — Run this HTML file in a browser to generate all PNG icons.
+ * Open the browser console, run generateAll(), then save the downloaded PNGs
+ * to assets/icons/
+ */
+
+function drawIcon(size) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const s = size;
+
+  // Background rounded rect
+  const r = s * 0.22;
+  ctx.beginPath();
+  ctx.moveTo(r, 0); ctx.lineTo(s-r, 0);
+  ctx.quadraticCurveTo(s, 0, s, r);
+  ctx.lineTo(s, s-r); ctx.quadraticCurveTo(s, s, s-r, s);
+  ctx.lineTo(r, s); ctx.quadraticCurveTo(0, s, 0, s-r);
+  ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  ctx.fillStyle = '#080D17';
+  ctx.fill();
+
+  // Shield shape
+  const cx = s/2, cy = s/2;
+  const sw = s * 0.6, sh = s * 0.68;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - sh/2 + s*0.02);
+  ctx.lineTo(cx - sw/2, cy - sh*0.25);
+  ctx.lineTo(cx - sw/2, cy + sh*0.05);
+  ctx.quadraticCurveTo(cx - sw/2, cy + sh/2*0.85, cx, cy + sh/2);
+  ctx.quadraticCurveTo(cx + sw/2, cy + sh/2*0.85, cx + sw/2, cy + sh*0.05);
+  ctx.lineTo(cx + sw/2, cy - sh*0.25);
+  ctx.closePath();
+
+  // Shield fill gradient
+  const grad = ctx.createLinearGradient(cx - sw/2, cy - sh/2, cx + sw/2, cy + sh/2);
+  grad.addColorStop(0, 'rgba(0,229,255,0.18)');
+  grad.addColorStop(1, 'rgba(0,100,160,0.12)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.strokeStyle = '#00E5FF';
+  ctx.lineWidth = s * 0.038;
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  // Checkmark inside shield
+  ctx.beginPath();
+  ctx.moveTo(cx - s*0.14, cy + s*0.02);
+  ctx.lineTo(cx - s*0.04, cy + s*0.13);
+  ctx.lineTo(cx + s*0.16, cy - s*0.08);
+  ctx.strokeStyle = '#00E5FF';
+  ctx.lineWidth = s * 0.06;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  return canvas;
+}
+
+function downloadCanvas(canvas, filename) {
+  const a = document.createElement('a');
+  a.download = filename;
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+
+function generateAll() {
+  [16, 32, 48, 128].forEach(size => {
+    const canvas = drawIcon(size);
+    downloadCanvas(canvas, `icon${size}.png`);
+  });
+  console.log('Icons generated! Save them to assets/icons/');
+}
+
+window.onload = () => {
+  // Preview all sizes
+  [16, 32, 48, 128].forEach(size => {
+    const canvas = drawIcon(size);
+    canvas.style.margin = '10px';
+    canvas.style.imageRendering = 'pixelated';
+    document.body.appendChild(canvas);
+  });
+
+  document.getElementById('genBtn').addEventListener('click', generateAll);
+};
+</script>
+<style>
+  body { background: #080D17; color: #F4F7FB; font-family: system-ui; padding: 20px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  button { padding: 12px 24px; background: #00E5FF; color: #080D17; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+</style>
+</head>
+<body>
+  <h2>TrustShield AI — Icon Preview</h2>
+  <p style="color:#94A3B8">Preview of the extension icons. Click the button to download all sizes.</p>
+  <div id="previews"></div>
+  <button id="genBtn">Download All Icons (16, 32, 48, 128px)</button>
+  <p style="color:#94A3B8;font-size:12px">Save downloaded files to <code style="color:#00E5FF">assets/icons/</code></p>
+</body>
+</html>
+

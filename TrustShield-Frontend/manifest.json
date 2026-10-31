@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "TrustShield AI",
+  "short_name": "TrustShield",
+  "version": "1.0.0",
+  "description": "Intelligent Threat Detection & Browser Protection - URL and Email/SMS phishing analysis powered by AI.",
+  "author": "TrustShield AI Team",
+
+  "icons": {
+    "16":  "assets/icons/icon16.png",
+    "32":  "assets/icons/icon32.png",
+    "48":  "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "TrustShield AI",
+    "default_icon": {
+      "16":  "assets/icons/icon16.png",
+      "32":  "assets/icons/icon32.png",
+      "48":  "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "dashboard/dashboard.html",
+        "auth/auth.html",
+        "styles/*",
+        "scripts/*",
+        "assets/*",
+        "components/*",
+        "pages/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
+

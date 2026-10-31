@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrustShield AI — Sign In or Create Account</title>
+  <link rel="stylesheet" href="../styles/design-system.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/themes.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+<div class="auth-layout">
+
+  <!-- ── Left Panel — Branding ─────────────────────────────── -->
+  <div class="auth-brand-panel">
+    <div class="auth-brand-inner">
+      <div class="auth-logo">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <rect width="44" height="44" rx="12" fill="rgba(0,229,255,0.10)" stroke="rgba(0,229,255,0.25)" stroke-width="1.5"/>
+          <path d="M22 6L7 12v10c0 8.75 6.25 16.92 15 18.92C31.75 38.92 37 30.75 37 22V12L22 6z"
+                fill="rgba(0,229,255,0.12)" stroke="var(--accent)" stroke-width="1.5"/>
+          <path d="M17 22l4 4 7-8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 class="auth-brand-name">TrustShield AI</h1>
+      <p class="auth-brand-desc">Intelligent Threat Detection &amp; Browser Protection</p>
+
+      <div class="auth-features">
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔗</div>
+          <div>
+            <div class="auth-feature-title">URL Threat Detection</div>
+            <div class="auth-feature-desc">Identify phishing, spoofed, and malicious websites instantly</div>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">✉️</div>
+          <div>
+            <div class="auth-feature-title">Email &amp; SMS Analysis</div>
+            <div class="auth-feature-desc">Detect phishing, social engineering, and credential theft</div>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🛡️</div>
+          <div>
+            <div class="auth-feature-title">Browser Protection</div>
+            <div class="auth-feature-desc">Real-time warning system for suspicious websites</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-notice auth-demo-notice">
+        ⚗ UI Prototype — Demo Mode Active
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Right Panel — Auth Forms ───────────────────────────── -->
+  <div class="auth-form-panel">
+    <div class="auth-form-wrapper">
+
+      <!-- ── SIGN IN VIEW ───────────────────────────────────── -->
+      <div class="auth-view" id="view-signin">
+        <div class="auth-view-header">
+          <h2 class="auth-title">Welcome to TrustShield AI</h2>
+          <p class="auth-subtitle">Sign in to access your threat protection dashboard</p>
+        </div>
+
+        <button class="btn-google" id="btnGoogleSignin">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+
+        <div class="divider-text"><span>or sign in with email</span></div>
+
+        <form class="auth-form" id="formSignin" novalidate>
+          <div class="input-group">
+            <label class="input-label" for="signinEmail">Email Address</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <input type="email" class="input" id="signinEmail" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <span class="input-error hidden" id="signinEmailError"></span>
+          </div>
+
+          <div class="input-group">
+            <div class="auth-label-row">
+              <label class="input-label" for="signinPassword">Password</label>
+              <button type="button" class="auth-link" id="btnForgotPw">Forgot password?</button>
+            </div>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input type="password" class="input" id="signinPassword" placeholder="Enter your password" autocomplete="current-password" />
+              <button type="button" class="input-icon-right" id="toggleSigninPw" aria-label="Show password">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="input-error hidden" id="signinPwError"></span>
+          </div>
+
+          <div class="auth-form-error hidden" id="signinFormError" role="alert"></div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="btnSignin">
+            <span class="btn-text">Sign In</span>
+            <span class="spinner hidden" id="signinSpinner"></span>
+          </button>
+        </form>
+
+        <p class="auth-switch-text">
+          Don't have an account? <button class="auth-link" id="btnGoRegisterFromSignin">Create one</button>
+        </p>
+
+        <p class="auth-legal">
+          By continuing, you agree to our <a href="legal.html#terms">Terms of Service</a> and <a href="legal.html#privacy">Privacy Policy</a>.
+          <br />Prototype build &mdash; authentication is simulated and no real account is created.
+        </p>
+      </div>
+
+      <!-- ── REGISTER VIEW ──────────────────────────────────── -->
+      <div class="auth-view hidden" id="view-register">
+        <div class="auth-view-header">
+          <button class="auth-back-btn" id="btnBackFromRegister" aria-label="Back to sign in">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <h2 class="auth-title">Create Account</h2>
+          <p class="auth-subtitle">Join TrustShield AI for free</p>
+        </div>
+
+        <button class="btn-google" id="btnGoogleRegister">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+
+        <div class="divider-text"><span>or register with email</span></div>
+
+        <form class="auth-form" id="formRegister" novalidate>
+          <div class="input-group">
+            <label class="input-label" for="regName">Full Name</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <input type="text" class="input" id="regName" placeholder="Alex Johnson" autocomplete="name" />
+            </div>
+            <span class="input-error hidden" id="regNameError"></span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="regEmail">Email Address</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <input type="email" class="input" id="regEmail" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <span class="input-error hidden" id="regEmailError"></span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="regPassword">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input type="password" class="input" id="regPassword" placeholder="Minimum 8 characters" autocomplete="new-password" />
+              <button type="button" class="input-icon-right" id="toggleRegPw" aria-label="Show password">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="input-error hidden" id="regPwError"></span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="regConfirmPassword">Confirm Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input type="password" class="input" id="regConfirmPassword" placeholder="Re-enter your password" autocomplete="new-password" />
+              <button type="button" class="input-icon-right" id="toggleRegConfirmPw" aria-label="Show password">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="input-error hidden" id="regConfirmPwError"></span>
+          </div>
+
+          <!-- Role Selection -->
+          <div class="input-group">
+            <label class="input-label">Account Type</label>
+            <div class="auth-role-selector">
+              <label class="auth-role-card" data-role="citizen">
+                <input type="radio" name="role" value="citizen" checked />
+                <div class="auth-role-card-inner">
+                  <span class="auth-role-icon">👤</span>
+                  <div>
+                    <div class="auth-role-name">Citizen User</div>
+                    <div class="auth-role-desc">Personal threat protection</div>
+                  </div>
+                </div>
+              </label>
+              <label class="auth-role-card" data-role="secops">
+                <input type="radio" name="role" value="secops" />
+                <div class="auth-role-card-inner">
+                  <span class="auth-role-icon">🛡️</span>
+                  <div>
+                    <div class="auth-role-name">SecOps Admin</div>
+                    <div class="auth-role-desc">Advanced security analytics</div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="auth-form-error hidden" id="registerFormError" role="alert"></div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="btnRegister">
+            <span class="btn-text">Create Account</span>
+            <span class="spinner hidden" id="registerSpinner"></span>
+          </button>
+        </form>
+
+        <p class="auth-switch-text">
+          Already have an account? <button class="auth-link" id="btnGoSignInFromRegister">Sign In</button>
+        </p>
+
+        <p class="auth-legal">
+          By continuing, you agree to our <a href="legal.html#terms">Terms of Service</a> and <a href="legal.html#privacy">Privacy Policy</a>.
+          <br />Prototype build &mdash; authentication is simulated and no real account is created.
+        </p>
+      </div>
+
+      <!-- ── FORGOT PASSWORD VIEW ───────────────────────────── -->
+      <div class="auth-view hidden" id="view-forgot">
+        <div class="auth-view-header">
+          <button class="auth-back-btn" id="btnBackFromForgot" aria-label="Go back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <h2 class="auth-title">Reset Password</h2>
+          <p class="auth-subtitle">We'll send you a reset link</p>
+        </div>
+
+        <div class="auth-forgot-icon">🔒</div>
+
+        <form class="auth-form" id="formForgot" novalidate>
+          <div class="input-group">
+            <label class="input-label" for="forgotEmail">Email Address</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <input type="email" class="input" id="forgotEmail" placeholder="Enter your registered email" autocomplete="email" />
+            </div>
+            <span class="input-error hidden" id="forgotEmailError"></span>
+          </div>
+
+          <div class="auth-form-error hidden" id="forgotFormError" role="alert"></div>
+          <div class="auth-form-success hidden" id="forgotSuccess" role="status"></div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="btnSendReset">
+            <span class="btn-text">Send Reset Link</span>
+            <span class="spinner hidden" id="forgotSpinner"></span>
+          </button>
+        </form>
+
+        <p class="auth-hint-text">
+          Note: Password reset emails are sent by the TrustShield backend.
+          In this prototype, no email is actually sent.
+        </p>
+
+        <p class="auth-switch-text">
+          Remember your password? <button class="auth-link" id="btnBackToSignin">Sign In</button>
+        </p>
+      </div>
+
+      <!-- ── SUCCESS / LOGGED IN VIEW ──────────────────────── -->
+      <div class="auth-view hidden" id="view-success">
+        <div class="auth-success-content">
+          <div class="auth-success-icon">✅</div>
+          <h2 class="auth-title">Signed in</h2>
+          <p class="auth-subtitle" id="successMsg">You're signed in as <strong>Alex Johnson</strong></p>
+          <div class="demo-notice" style="margin: 16px 0">⚗ Prototype sign-in — not a verified session</div>
+          <p class="auth-hint-text" style="margin-bottom:12px">Redirecting to your dashboard…</p>
+          <button class="btn btn-primary btn-full btn-lg" id="btnGoToDashboard">
+            Open Dashboard
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /auth-form-wrapper -->
+  </div><!-- /auth-form-panel -->
+
+</div><!-- /auth-layout -->
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../scripts/storage.js"></script>
+<script src="../scripts/mock-data.js"></script>
+<script src="../scripts/utils.js"></script>
+<script src="../scripts/theme-manager.js"></script>
+<script src="../scripts/api-service.js"></script>
+<script src="../scripts/auth-guard.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>
+
